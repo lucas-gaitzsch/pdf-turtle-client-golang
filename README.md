@@ -1,9 +1,9 @@
-# pdf-turtle-client-golang
+# PdfTurtle Client Golang
 Golang (Go) client library to use the [PdfTurtle](https://github.com/lucas-gaitzsch/pdf-turtle) service 
 
 **HINT:** This lib is in the beta.
 
-## How to use - Recommended way for ASP.NET Core and Bundles
+## How to use - Recommended way
 
 See a working example in [examples/main.go](./examples/main.go).
 
