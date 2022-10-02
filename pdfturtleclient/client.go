@@ -127,7 +127,7 @@ func (c *PdfTurtleClient) sendRenderRequest(ctx context.Context, method string, 
 	if err != nil {
 		return nil, err
 	}
-	
+
 	req.Header.Set("Content-Type", contentType)
 
 	resp, err := c.client.Do(req)
