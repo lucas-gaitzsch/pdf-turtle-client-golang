@@ -1,6 +1,8 @@
 # PdfTurtle Client Golang
 Golang (Go) client library to use the [PdfTurtle](https://github.com/lucas-gaitzsch/pdf-turtle) service 
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/lucas-gaitzsch/pdf-turtle-client-golang.svg)](https://pkg.go.dev/github.com/lucas-gaitzsch/pdf-turtle-client-golang)
+
 **HINT:** This lib is in the beta.
 
 ## How to use - Recommended way
