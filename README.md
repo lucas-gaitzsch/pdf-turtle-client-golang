@@ -65,5 +65,6 @@ pdf := c.RenderTemplateAsync(RenderTemplateData{
 
 
 ## Open TODOs
-- [x] Working examples for all Methods
+- [x] Working examples for all methods
+- [x] Add documentation as comments
 - [ ] Tests

@@ -16,6 +16,7 @@ import (
 	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/models/dto"
 )
 
+// Creates a new PdfTurtle http client with the given PdfTurtle service baseUrl
 func NewPdfTurtleClient(baseUrl string) PdfTurtleClientInterface {
 	return &PdfTurtleClient{
 		baseUrl: strings.TrimRight(baseUrl, "/"),
@@ -28,9 +29,6 @@ type PdfTurtleClient struct {
 	client  *http.Client
 }
 
-func (c *PdfTurtleClient) Render(renderData models.RenderData) (io.ReadCloser, error) {
-	return c.RenderWithContext(context.Background(), renderData)
-}
 func (c *PdfTurtleClient) RenderWithContext(ctx context.Context, renderData models.RenderData) (io.ReadCloser, error) {
 	json, err := json.Marshal(renderData)
 	if err != nil {
@@ -39,9 +37,8 @@ func (c *PdfTurtleClient) RenderWithContext(ctx context.Context, renderData mode
 
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html/render", bytes.NewReader(json), "application/json")
 }
-
-func (c *PdfTurtleClient) RenderTemplate(renderTemplateData models.RenderTemplateData) (io.ReadCloser, error) {
-	return c.RenderTemplateWithContext(context.Background(), renderTemplateData)
+func (c *PdfTurtleClient) Render(renderData models.RenderData) (io.ReadCloser, error) {
+	return c.RenderWithContext(context.Background(), renderData)
 }
 
 func (c *PdfTurtleClient) RenderTemplateWithContext(ctx context.Context, renderTemplateData models.RenderTemplateData) (io.ReadCloser, error) {
@@ -52,11 +49,10 @@ func (c *PdfTurtleClient) RenderTemplateWithContext(ctx context.Context, renderT
 
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html-template/render", bytes.NewReader(json), "application/json")
 }
-
-func (c *PdfTurtleClient) TestTemplate(renderTemplateData models.RenderTemplateData) (*dto.TemplateTestResult, error) {
-
-	return c.TestTemplateWithContext(context.Background(), renderTemplateData)
+func (c *PdfTurtleClient) RenderTemplate(renderTemplateData models.RenderTemplateData) (io.ReadCloser, error) {
+	return c.RenderTemplateWithContext(context.Background(), renderTemplateData)
 }
+
 func (c *PdfTurtleClient) TestTemplateWithContext(ctx context.Context, renderTemplateData models.RenderTemplateData) (*dto.TemplateTestResult, error) {
 	jb, err := json.Marshal(renderTemplateData)
 	if err != nil {
@@ -88,10 +84,10 @@ func (c *PdfTurtleClient) TestTemplateWithContext(ctx context.Context, renderTem
 
 	return ttr, nil
 }
-
-func (c *PdfTurtleClient) RenderBundle(bundles []io.Reader, model any) (io.ReadCloser, error) {
-	return c.RenderBundleWithContext(context.Background(), bundles, model)
+func (c *PdfTurtleClient) TestTemplate(renderTemplateData models.RenderTemplateData) (*dto.TemplateTestResult, error) {
+	return c.TestTemplateWithContext(context.Background(), renderTemplateData)
 }
+
 func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles []io.Reader, model any) (io.ReadCloser, error) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
@@ -120,6 +116,9 @@ func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles [
 	writer.Close()
 
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html-bundle/render", body, writer.FormDataContentType())
+}
+func (c *PdfTurtleClient) RenderBundle(bundles []io.Reader, model any) (io.ReadCloser, error) {
+	return c.RenderBundleWithContext(context.Background(), bundles, model)
 }
 
 func (c *PdfTurtleClient) sendRenderRequest(ctx context.Context, method string, body io.Reader, contentType string) (io.ReadCloser, error) {
