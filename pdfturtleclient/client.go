@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/models"
-	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/models/dto"
+	"github.com/lucas-gaitzsch/pdf-turtle-client-golang/models"
+	"github.com/lucas-gaitzsch/pdf-turtle-client-golang/models/dto"
 )
 
 // Creates a new PdfTurtle http client with the given PdfTurtle service baseUrl

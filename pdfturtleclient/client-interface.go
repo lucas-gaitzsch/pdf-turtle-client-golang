@@ -4,8 +4,8 @@ import (
 	"context"
 	"io"
 
-	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/models"
-	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/models/dto"
+	"github.com/lucas-gaitzsch/pdf-turtle-client-golang/models"
+	"github.com/lucas-gaitzsch/pdf-turtle-client-golang/models/dto"
 )
 
 type PdfTurtleClientInterface interface {

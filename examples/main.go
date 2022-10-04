@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/models"
-	"github.com/lucas-gaitzsch/pdf-turtle-client-dotnet/pdfturtleclient"
+	"github.com/lucas-gaitzsch/pdf-turtle-client-golang/models"
+	"github.com/lucas-gaitzsch/pdf-turtle-client-golang/pdfturtleclient"
 )
 
 func main() {
