@@ -11,7 +11,7 @@ See a working example in [examples/main.go](./examples/main.go).
 
 Get the package and than you are ready to go.
 ```bash
-go get github.com/lucas-gaitzsch/pdf-turtle-client-dotnet
+go get github.com/lucas-gaitzsch/pdf-turtle-client-golang
 ```
 
 ```bash
