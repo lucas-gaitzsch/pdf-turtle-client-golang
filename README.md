@@ -2,8 +2,10 @@
 Golang (Go) client library to use the [PdfTurtle](https://github.com/lucas-gaitzsch/pdf-turtle) service 
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/lucas-gaitzsch/pdf-turtle-client-golang.svg)](https://pkg.go.dev/github.com/lucas-gaitzsch/pdf-turtle-client-golang)
-
-**HINT:** This lib is in the beta.
+[![Go Report Card](https://goreportcard.com/badge/github.com/lucas-gaitzsch/pdf-turtle-client-golang)](https://goreportcard.com/report/github.com/lucas-gaitzsch/pdf-turtle-client-golang)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=lucas-gaitzsch_pdf-turtle-client-golang&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=lucas-gaitzsch_pdf-turtle-client-golang)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=lucas-gaitzsch_pdf-turtle-client-golang&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=lucas-gaitzsch_pdf-turtle-client-golang)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=lucas-gaitzsch_pdf-turtle-client-golang&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=lucas-gaitzsch_pdf-turtle-client-golang)
 
 ## How to use - Recommended way
 

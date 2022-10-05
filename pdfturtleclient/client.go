@@ -29,6 +29,8 @@ type PdfTurtleClient struct {
 	client  *http.Client
 }
 
+
+// Returns PDF file generated from HTML of body, header and footer
 func (c *PdfTurtleClient) RenderWithContext(ctx context.Context, renderData models.RenderData) (io.ReadCloser, error) {
 	json, err := json.Marshal(renderData)
 	if err != nil {
@@ -37,10 +39,12 @@ func (c *PdfTurtleClient) RenderWithContext(ctx context.Context, renderData mode
 
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html/render", bytes.NewReader(json), "application/json")
 }
+// Returns PDF file generated from HTML of body, header and footer
 func (c *PdfTurtleClient) Render(renderData models.RenderData) (io.ReadCloser, error) {
 	return c.RenderWithContext(context.Background(), renderData)
 }
 
+// Returns PDF file generated from HTML template plus model of body, header and footer
 func (c *PdfTurtleClient) RenderTemplateWithContext(ctx context.Context, renderTemplateData models.RenderTemplateData) (io.ReadCloser, error) {
 	json, err := json.Marshal(renderTemplateData)
 	if err != nil {
@@ -49,10 +53,12 @@ func (c *PdfTurtleClient) RenderTemplateWithContext(ctx context.Context, renderT
 
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html-template/render", bytes.NewReader(json), "application/json")
 }
+// Returns PDF file generated from HTML template plus model of body, header and footer
 func (c *PdfTurtleClient) RenderTemplate(renderTemplateData models.RenderTemplateData) (io.ReadCloser, error) {
 	return c.RenderTemplateWithContext(context.Background(), renderTemplateData)
 }
 
+// Returns information about matching model data to template
 func (c *PdfTurtleClient) TestTemplateWithContext(ctx context.Context, renderTemplateData models.RenderTemplateData) (*dto.TemplateTestResult, error) {
 	jb, err := json.Marshal(renderTemplateData)
 	if err != nil {
@@ -84,10 +90,12 @@ func (c *PdfTurtleClient) TestTemplateWithContext(ctx context.Context, renderTem
 
 	return ttr, nil
 }
+// Returns information about matching model data to template
 func (c *PdfTurtleClient) TestTemplate(renderTemplateData models.RenderTemplateData) (*dto.TemplateTestResult, error) {
 	return c.TestTemplateWithContext(context.Background(), renderTemplateData)
 }
 
+// Returns PDF file generated from bundle (Zip-File) of HTML or HTML template of body, header, footer and assets. The index.html file in the Zip-Bundle is required.
 func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles []io.Reader, model any) (io.ReadCloser, error) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
@@ -117,6 +125,7 @@ func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles [
 
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html-bundle/render", body, writer.FormDataContentType())
 }
+// Returns PDF file generated from bundle (Zip-File) of HTML or HTML template of body, header, footer and assets. The index.html file in the Zip-Bundle is required.
 func (c *PdfTurtleClient) RenderBundle(bundles []io.Reader, model any) (io.ReadCloser, error) {
 	return c.RenderBundleWithContext(context.Background(), bundles, model)
 }
