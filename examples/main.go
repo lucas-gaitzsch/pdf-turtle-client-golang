@@ -25,11 +25,11 @@ func main() {
 
 	http.HandleFunc("/html-bundle-example", func(w http.ResponseWriter, r *http.Request) {
 		bodyBundle, _ := os.ReadFile("pdf-turtle-bundle-body.zip")
-		headerBundle, _ := os.ReadFile("pdf-turtle-bundle-header.zip")
+		headerBundle, _ := os.ReadFile("pdf-turtle-bundle-header/header.html")
 
-		resp, _ := c.RenderBundle([]io.Reader{
-			bytes.NewReader(bodyBundle),
-			bytes.NewReader(headerBundle),
+		resp, _ := c.RenderBundle(map[string]io.Reader{
+			"body.zip": bytes.NewReader(bodyBundle),
+			"header.html": bytes.NewReader(headerBundle),
 		},
 			map[string]any{
 				"title":   "PdfTurtle _🐢_ TestReport",

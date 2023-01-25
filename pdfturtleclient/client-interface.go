@@ -25,7 +25,7 @@ type PdfTurtleClientInterface interface {
 	TestTemplateWithContext(ctx context.Context, renderTemplateData models.RenderTemplateData) (*dto.TemplateTestResult, error)
 
 	// Returns PDF file generated from bundle (Zip-File) of HTML or HTML template of body, header, footer and assets. The index.html file in the Zip-Bundle is required.
-	RenderBundle(bundles []io.Reader, model any) (io.ReadCloser, error)
+	RenderBundle(bundles map[string]io.Reader, model any) (io.ReadCloser, error)
 	// Returns PDF file generated from bundle (Zip-File) of HTML or HTML template of body, header, footer and assets. The index.html file in the Zip-Bundle is required.
-	RenderBundleWithContext(ctx context.Context, bundles []io.Reader, model any) (io.ReadCloser, error)
+	RenderBundleWithContext(ctx context.Context, bundles map[string]io.Reader, model any) (io.ReadCloser, error)
 }

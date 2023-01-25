@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -96,17 +95,17 @@ func (c *PdfTurtleClient) TestTemplate(renderTemplateData models.RenderTemplateD
 }
 
 // Returns PDF file generated from bundle (Zip-File) of HTML or HTML template of body, header, footer and assets. The index.html file in the Zip-Bundle is required.
-func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles []io.Reader, model any) (io.ReadCloser, error) {
+func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles map[string]io.Reader, model any) (io.ReadCloser, error) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
 
 	// bundles
-	for i, b := range bundles {
-		part, err := writer.CreateFormFile("bundle", filepath.Base(fmt.Sprintf("bundle_%d.zip", i)))
+	for fileName, bundle := range bundles {
+		part, err := writer.CreateFormFile("bundle", filepath.Base(fileName))
 		if err != nil {
 			return nil, err
 		}
-		io.Copy(part, b)
+		io.Copy(part, bundle)
 	}
 
 	// model
@@ -126,7 +125,7 @@ func (c *PdfTurtleClient) RenderBundleWithContext(ctx context.Context, bundles [
 	return c.sendRenderRequest(ctx, "/api/pdf/from/html-bundle/render", body, writer.FormDataContentType())
 }
 // Returns PDF file generated from bundle (Zip-File) of HTML or HTML template of body, header, footer and assets. The index.html file in the Zip-Bundle is required.
-func (c *PdfTurtleClient) RenderBundle(bundles []io.Reader, model any) (io.ReadCloser, error) {
+func (c *PdfTurtleClient) RenderBundle(bundles map[string]io.Reader, model any) (io.ReadCloser, error) {
 	return c.RenderBundleWithContext(context.Background(), bundles, model)
 }
 
